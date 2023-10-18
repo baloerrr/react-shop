@@ -1,30 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { MdClose } from "react-icons/md";
-import { HiMenuAlt2 } from "react-icons/hi";
-import { motion } from "framer-motion";
-import { logo, logoLight } from "../../../assets/images";
-import Image from "../../designLayouts/Image";
-import { navBarList } from "../../../constants";
-import Flex from "../../designLayouts/Flex";
+import React, { useEffect, useState } from 'react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
+import { MdClose } from 'react-icons/md'
+import { HiMenuAlt2 } from 'react-icons/hi'
+import { motion } from 'framer-motion'
+import { logo, logoLight } from '../../../assets/images'
+import { navBarList } from '../../../constants'
+import Flex from '../../designLayouts/Flex'
 
 const Header = () => {
-  const [showMenu, setShowMenu] = useState(true);
-  const [sidenav, setSidenav] = useState(false);
-  const [category, setCategory] = useState(false);
-  const [brand, setBrand] = useState(false);
-  const location = useLocation();
+  const [showMenu, setShowMenu] = useState(true)
+  const [sidenav, setSidenav] = useState(false)
+  const [category, setCategory] = useState(false)
+  const [brand, setBrand] = useState(false)
+  const location = useLocation()
   useEffect(() => {
     let ResponsiveMenu = () => {
       if (window.innerWidth < 667) {
-        setShowMenu(false);
+        setShowMenu(false)
       } else {
-        setShowMenu(true);
+        setShowMenu(true)
       }
-    };
-    ResponsiveMenu();
-    window.addEventListener("resize", ResponsiveMenu);
-  }, []);
+    }
+    ResponsiveMenu()
+    window.addEventListener('resize', ResponsiveMenu)
+  }, [])
 
   return (
     <div className="w-full h-20 bg-white sticky top-0 z-50 border-b-[1px] border-b-gray-200">
@@ -32,7 +31,7 @@ const Header = () => {
         <Flex className="flex items-center justify-between h-full">
           <Link to="/">
             <div>
-              <Image className="w-20 object-cover" imgSrc={logo} />
+              <h1 className="text-xl font-extrabold">BALOERRR</h1>
             </div>
           </Link>
           <div>
@@ -49,7 +48,7 @@ const Header = () => {
                       key={_id}
                       className="flex font-normal hover:font-bold w-20 h-6 justify-center items-center px-12 text-base text-[#767676] hover:underline underline-offset-[4px] decoration-[1px] hover:text-[#262626] md:border-r-[2px] border-r-gray-300 hoverEffect last:border-r-0"
                       to={link}
-                      state={{ data: location.pathname.split("/")[1] }}
+                      state={{ data: location.pathname.split('/')[1] }}
                     >
                       <li>{title}</li>
                     </NavLink>
@@ -83,7 +82,7 @@ const Header = () => {
                         >
                           <NavLink
                             to={item.link}
-                            state={{ data: location.pathname.split("/")[1] }}
+                            state={{ data: location.pathname.split('/')[1] }}
                             onClick={() => setSidenav(false)}
                           >
                             {item.title}
@@ -96,8 +95,8 @@ const Header = () => {
                         onClick={() => setCategory(!category)}
                         className="flex justify-between text-base cursor-pointer items-center font-titleFont mb-2"
                       >
-                        Shop by Category{" "}
-                        <span className="text-lg">{category ? "-" : "+"}</span>
+                        Shop by Category{' '}
+                        <span className="text-lg">{category ? '-' : '+'}</span>
                       </h1>
                       {category && (
                         <motion.ul
@@ -120,7 +119,7 @@ const Header = () => {
                         className="flex justify-between text-base cursor-pointer items-center font-titleFont mb-2"
                       >
                         Shop by Brand
-                        <span className="text-lg">{brand ? "-" : "+"}</span>
+                        <span className="text-lg">{brand ? '-' : '+'}</span>
                       </h1>
                       {brand && (
                         <motion.ul
@@ -151,7 +150,7 @@ const Header = () => {
         </Flex>
       </nav>
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
