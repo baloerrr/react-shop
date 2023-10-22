@@ -22,13 +22,19 @@ module.exports = {
 
       },
       colors: {
-        primeColor: "#262626",
+        primeColor: "#810CA8",
+        textPrimeColor: "#810CA8",
+        textBase: "#EEEEEE",
         lightText: "#6D6D6D",
+        bgBase: "#EEEEEE",
+        bgDark: "#1B2430",
+        dark: "#201c1c"
       },
       boxShadow: {
         testShadow: "0px 0px 54px -13px rgba(0,0,0,0.7)",
       },
     },
   },
-  plugins: [require("tailwind-scrollbar")],
+  darkMode: "class",
+  plugins: [require("tailwind-scrollbar"), require("daisyui")], 
 };

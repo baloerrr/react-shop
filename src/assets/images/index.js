@@ -28,8 +28,17 @@ import spfFour from "./products/specialOffer/spfFour.webp";
 // Year Product
 import productOfTheYear from "./products/productOfTheYear.webp";
 // ============== Products End here ======================
+
 import paymentCard from "./payment.png";
 import emptyCart from "../images/emptyCart.png";
+
+// Showcase
+import IndoGithubers from "./showcase/IndoGithubers.png"
+import PengelolaanBuku from "./showcase/PengelolaanBuku.png"
+import GrensaStiker from "./showcase/GrensaStiker.png"
+import Qovier from "./showcase/Qovier.png"
+// ============== Showcase End here ======================
+
 
 export {
   logo,
@@ -62,6 +71,14 @@ export {
   // Year Product
   productOfTheYear,
   // ===================== Products End here ==============
+
+// Showcase
+  IndoGithubers,
+  PengelolaanBuku,
+  GrensaStiker,
+  Qovier,
+// ============== Showcase End here ======================
+
   paymentCard,
   emptyCart,
 };

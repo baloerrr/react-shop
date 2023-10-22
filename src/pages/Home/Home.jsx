@@ -6,25 +6,27 @@ import NewArrivals from '../../components/home/NewArrivals/NewArrivals'
 import Sale from '../../components/home/Sale/Sale'
 import SpecialOffers from '../../components/home/SpecialOffers/SpecialOffers'
 import YearProduct from '../../components/home/YearProduct/YearProduct'
+import ShowcaseList from '../../components/home/Showcase/ShowcaseList'
 
 const Home = () => {
   return (
     <div className="w-full mx-auto">
-      <Banner />
-      <BannerBottom />
+      {/* <Banner /> */}
+      {/* <BannerBottom /> */}
       <div className="max-w-container mx-14 px-4">
-        <Sale />
-        <NewArrivals />
-        <BestSellers />
+        {/* <Sale /> */}
+        <ShowcaseList />
+        {/* <NewArrivals /> */}
+        {/* <BestSellers /> */}
       </div>
 
-      <div>
+      {/* <div>
         <YearProduct />
-      </div>
+      </div> */}
 
-      <div className="max-w-container mx-14 px-4">
+      {/* <div className="max-w-container mx-14 px-4">
         <SpecialOffers />
-      </div>
+      </div> */}
     </div>
   )
 }

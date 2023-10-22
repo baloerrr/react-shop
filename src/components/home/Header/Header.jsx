@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { MdClose } from 'react-icons/md'
 import { HiMenuAlt2 } from 'react-icons/hi'
 import { motion } from 'framer-motion'
-import { logo, logoLight } from '../../../assets/images'
+import { logoLight } from '../../../assets/images'
 import { navBarList } from '../../../constants'
 import Flex from '../../designLayouts/Flex'
 import { FaSearch, FaUser, FaCaretDown, FaShoppingCart } from 'react-icons/fa'
 import { paginationItems } from '../../../constants'
 import { useSelector } from 'react-redux'
+import Logo from '../../Logo/Logo'
+import Toggle from '../../Toggle/Toggle'
 
 const Header = () => {
   const products = useSelector((state) => state.orebiReducer.products)
@@ -22,9 +24,14 @@ const Header = () => {
   const [filteredProducts, setFilteredProducts] = useState([])
   const [showSearchBar, setShowSearchBar] = useState(false)
   const [showUser, setShowUser] = useState(false)
+  const [showSearchInput, setShowSearchInput] = useState(false)
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value)
+  }
+
+  const handleSearchInput = () => {
+    setShowSearchInput(!showSearchInput)
   }
 
   useEffect(() => {
@@ -47,67 +54,74 @@ const Header = () => {
   }, [])
 
   return (
-    <div className="w-full h-20 bg-white sticky top-0 z-50 border-b-[1px] border-b-gray-200">
+    <div className="w-full h-20 bg-white sticky top-0 z-50 border-b-[1px] border-b-gray-100 dark:bg-slate-900 dark:border-b-bgBase">
       <nav className="h-full px-4 max-w-container mx-auto relative">
-        <Flex className="flex items-center justify-around h-full">
-          <Link to="/">
-            <div>
-              <h1 className="text-xl font-extrabold font-bodyFont">BALOERRR</h1>
-            </div>
-          </Link>
-          <div className="relative w-full lg:w-[600px] h-[50px] text-base text-primeColor bg-[#F5F5F3] flex items-center gap-2 justify-between px-6 rounded-xl">
-            <input
-              className="flex-1 h-full outline-none bg-[#F5F5F3] placeholder:text-[#C4C4C4] placeholder:text-[14px]"
-              type="text"
-              onChange={handleSearch}
-              value={searchQuery}
-              placeholder="Search your products here"
-            />
-            <FaSearch className="w-5 h-5" />
-            {searchQuery && (
-              <div
-                className={`w-full mx-auto h-96 bg-white top-16 absolute left-0 z-50 overflow-y-scroll shadow-2xl scrollbar-hide cursor-pointer`}
-              >
-                {searchQuery &&
-                  filteredProducts.map((item) => (
-                    <div
-                      onClick={() =>
-                        navigate(
-                          `/product/${item.productName
-                            .toLowerCase()
-                            .split(' ')
-                            .join('')}`,
-                          {
-                            state: {
-                              item: item,
+        <Flex className="flex items-center md:justify-between mx-14 justify-between h-full">
+          {/* Logo */}
+          <Logo />
+
+          {/* Search Mobile */}
+          {showSearchInput ? (
+            <div className="md:hidden relative flex w-full h-full text-base text-primeColor bg-[#F5F5F3] rounded-xl">
+              <input
+                className="md:flex absolute h-full outline-none bg-[#F5F5F3] placeholder:text-[#C4C4C4] placeholder:text-[14px]"
+                type="text"
+                onChange={handleSearch}
+                value={searchQuery}
+                placeholder="Search your products here"
+              />
+              {searchQuery && (
+                <div
+                  className={`w-full mx-auto h-96 bg-white top-16 absolute left-0 z-50 overflow-y-scroll shadow-2xl scrollbar-hide cursor-pointer`}
+                >
+                  {searchQuery &&
+                    filteredProducts.map((item) => (
+                      <div
+                        onClick={() =>
+                          navigate(
+                            `/product/${item.productName
+                              .toLowerCase()
+                              .split(' ')
+                              .join('')}`,
+                            {
+                              state: {
+                                item: item,
+                              },
                             },
-                          },
-                        ) &
-                        setShowSearchBar(true) &
-                        setSearchQuery('')
-                      }
-                      key={item._id}
-                      className="max-w-[600px] h-28 bg-gray-100 mb-3 flex items-center gap-3"
-                    >
-                      <img className="w-24" src={item.img} alt="productImg" />
-                      <div className="flex flex-col gap-1">
-                        <p className="font-semibold text-lg">
-                          {item.productName}
-                        </p>
-                        <p className="text-xs">{item.des}</p>
-                        <p className="text-sm">
-                          Price:{' '}
-                          <span className="text-primeColor font-semibold">
-                            ${item.price}
-                          </span>
-                        </p>
+                          ) &
+                          setShowSearchBar(true) &
+                          setSearchQuery('')
+                        }
+                        key={item._id}
+                        className="max-w-[600px] h-28 bg-gray-100 mb-3 flex items-center gap-3"
+                      >
+                        <img className="w-24" src={item.img} alt="productImg" />
+                        <div className="flex flex-col gap-1">
+                          <p className="font-semibold text-lg">
+                            {item.productName}
+                          </p>
+                          <p className="text-xs">{item.des}</p>
+                          <p className="text-sm">
+                            Price:{' '}
+                            <span className="text-primeColor font-semibold">
+                              ${item.price}
+                            </span>
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  ))}
-              </div>
-            )}
-          </div>
+                    ))}
+                </div>
+              )}
+            </div>
+          ) : (
+            ''
+          )}
+
+          {/* Navigation */}
           <div>
+            <button onClick={handleSearchInput} className="md:hidden">
+              <FaSearch className="w-4 h-4" />
+            </button>
             {showMenu && (
               <motion.ul
                 initial={{ y: 30, opacity: 0 }}
@@ -119,55 +133,15 @@ const Header = () => {
                   {navBarList.map(({ _id, title, link }) => (
                     <NavLink
                       key={_id}
-                      className="flex font-normal hover:font-bold w-20 h-6 justify-center items-center px-12 text-base text-[#767676] hover:underline underline-offset-[4px] decoration-[1px] hover:text-[#262626] md:border-r-[2px] border-r-gray-300 hoverEffect last:border-r-0"
+                      className="flex font-bold hover:font-bold w-20 h-6 justify-center items-center px-12 text-base text-bgDark  underline-offset-[4px] decoration-[1px] hover:text-[#262626] md:border-r-[2px] border-r-gray-300 hoverEffect last:border-r-0 dark:text-bgBase dark:hover:text-bgBase"
                       to={link}
                       state={{ data: location.pathname.split('/')[1] }}
                     >
                       <li>{title}</li>
                     </NavLink>
                   ))}
-                  <div className="flex gap-4 mt-2 lg:mt-0 items-center pr-6 cursor-pointer relative">
-                    <div
-                      onClick={() => setShowUser(!showUser)}
-                      className="flex"
-                    >
-                      <FaUser />
-                      <FaCaretDown />
-                    </div>
-                    {showUser && (
-                      <motion.ul
-                        initial={{ y: 30, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.5 }}
-                        className="absolute top-6 left-0 z-50 bg-primeColor w-44 text-[#767676] h-auto p-4 pb-6"
-                      >
-                        <Link to="/signin">
-                          <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                            Login
-                          </li>
-                        </Link>
-                        <Link onClick={() => setShowUser(false)} to="/signup">
-                          <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                            Sign Up
-                          </li>
-                        </Link>
-                        <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                          Profile
-                        </li>
-                        <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400  hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                          Others
-                        </li>
-                      </motion.ul>
-                    )}
-                    <Link to="/cart">
-                      <div className="relative">
-                        <FaShoppingCart />
-                        <span className="absolute font-titleFont top-3 -right-2 text-xs w-4 h-4 flex items-center justify-center rounded-full bg-primeColor text-white">
-                          {products.length > 0 ? products.length : 0}
-                        </span>
-                      </div>
-                    </Link>
-                  </div>
+
+                  <Toggle />
                 </>
               </motion.ul>
             )}
@@ -175,6 +149,8 @@ const Header = () => {
               onClick={() => setSidenav(!sidenav)}
               className="inline-block md:hidden cursor-pointer w-8 h-6 absolute top-6 right-4"
             />
+
+            {/* Sidenav mobile */}
             {sidenav && (
               <div className="fixed top-0 left-0 w-full h-screen bg-black text-gray-200 bg-opacity-80 z-50">
                 <motion.div

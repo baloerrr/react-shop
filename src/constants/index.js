@@ -11,6 +11,10 @@ import {
   newArrTwo,
   newArrThree,
   newArrFour,
+  IndoGithubers, 
+  PengelolaanBuku,
+  GrensaStiker,
+  Qovier
 } from "../assets/images/index";
 
 // =================== NavBarList Start here ====================
@@ -22,11 +26,68 @@ export const navBarList = [
   },
   {
     _id: 1002,
-    title: "Shop",
-    link: "/shop",
+    title: "Showcase",
+    link: "/showcase",
+  },
+  // {
+  //   _id: 1002,
+  //   title: "Shop",
+  //   link: "/shop",
+  // },
+];
+// =================== NavBarList End here ======================
+
+
+// =================== NavBarList Start here ====================
+export const ShowCaseList = [
+  {
+    id: 0,
+    img: IndoGithubers,
+    name: "IndoGitHubers!",
+    user: "depa",
+    description: "Halo semuanya, salam kenal 👋 perkenalkan saya depa. izin ikutan showcase project sederhana yg saya bikin 🙇‍♂️ project ini dibikin karena rasa penasaran saya soal siapa github user di indonesia yg paling banyak followers & contributions nya. sambil belajar react & biar ada hasilnya, saya coba bikin project ini dengan nama IndoGitHubers *dan ternyata rank 1 nya Pak Dhika 🥇",
+    techStack: ["React Js", "PrimeReact", "Tailwind Css"],
+    githubRepo: "https://github.com/depapp/IndoGitHubers",
+    linkWeb: "https://indogithubers.vercel.app/",
+    like: 0,
+  },
+  {
+    id: 1,
+    img: PengelolaanBuku,
+    name: "Pengelolaan Buku",
+    user: "Kang Dappa",
+    description: "Assalammulaikum pak dika dan teman teman saya mau showcase 2 project sederhana dan kecil kecilan saja btw project ini tugas akhir kelas DICODING daripada nganggur di lokal mending saya push ke production dan saya submit biar temen temen dan pak dika dapat mencoba project yang sudah saya buat ini . mohon maaf sebelumnya project ini belum responsif ( baru buat ui versi desktop )",
+    techStack: ["Html", "Css", "Javascript"],
+    githubRepo: "https://github.com/siidappa/pengelolaan-buku",
+    linkWeb: "https://pengelolaan-buku.vercel.app",
+    like: 0,
+  },
+  {
+    id: 3,
+    img: Qovier,
+    name: "Qovier",
+    user: "cholis04",
+    description: "Halo Pak Dhika dan halo juga teman-teman member WPU, izinkan saya memperkenalkan personal project yang telah saya kerjakan dalam beberapa minggu ini, yang saya kasih nama Qovier. Namanya sendiri diambil dari 'Color Pairs', kemudian disingkat jadi 'Co-Pair', dan akhirnya sedikit diplesetkan menjadi Qovier. Tentang Project ini adalah sebuah online generator tool untuk berkesperimen dan menjelajahi pasangan warna. Qovier akan menghasilkan daftar pasangan warna (kombinasi dua warna) dalam bentuk solid, teks, pola, warna gradasi dan juga ilustrasi (flatline). Gas langsung cek aja",
+    techStack: ["Next js", "Tailwind css", "Swipper js", "Framer motion"],
+    githubRepo: "https://github.com/PILIPSCODE/Grensa-Stiker",
+    linkWeb: "https://grensa-stiker.vercel.app/",
+    like: 0,
+  },
+  {
+    id: 2,
+    img: GrensaStiker,
+    name: "Grensa Stiker",
+    user: "Kang Error",
+    description: "hallo teman teman WPU dan Pak Sandi, Saya mau memamerkan Portfolio teman saya, yang saya buat Portfolionya untuk Tambah2 Project untuk Portfolio saya",
+    techStack: ["Next js", "Tailwind css", "Swipper js", "Framer motion"],
+    githubRepo: "https://github.com/PILIPSCODE/Grensa-Stiker",
+    linkWeb: "https://grensa-stiker.vercel.app/",
+    like: 0,
   },
 ];
 // =================== NavBarList End here ======================
+
+
 // =================== Special Offer data Start here ============
 export const SplOfferData = [
   {

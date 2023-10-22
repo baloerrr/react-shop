@@ -15,9 +15,9 @@
 
 /* ============= NavLink active Start here ============== */
 nav .active li {
-  color: black;
+  color: #EEEEEE;
   font-weight: 600;
-  text-decoration: 1px underline black;
+  text-decoration: 1px underline #810CA8;
 }
 
 @media screen and (max-width: 665px) {
@@ -31,4 +31,33 @@ nav .active li {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+@font-face {
+  font-family: Sk-Modernist-Bold;
+  src: url('../public/fonts/Sk-Modernist-Bold.otf');
+}
+
+@font-face {
+  font-family: Sk-Modernist-Mono;
+  src: url('../public/fonts/Sk-Modernist-Mono.otf');
+}
+
+@font-face {
+  font-family: Sk-Modernist-Regular;
+  src: url('../public/fonts/Sk-Modernist-Regular.otf');
+}
+
+.Sk-Modernist-Bold {
+  font-family: Sk-Modernist-Bold;
+}
+
+.Sk-Modernist-Mono {
+  font-family: Sk-Modernist-Mono;
+}
+
+.Sk-Modernist-Regular {
+  font-family: Sk-Modernist-Regular;
+}
+
+
 /* ============= NavLink active End here ================ */
