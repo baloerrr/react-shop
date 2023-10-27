@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FaGithub, FaLink, FaHeart, FaDonate } from 'react-icons/fa'
+import {
+  FaGithub,
+  FaLink,
+  FaHeart,
+  FaDonate,
+  FaWindowClose,
+} from 'react-icons/fa'
 import { ShowCaseList } from '../../../constants'
 
 function ShowcaseCard() {
@@ -98,20 +104,55 @@ function ShowcaseCard() {
 
       {/* Modal untuk menampilkan deskripsi */}
       {showModal && selectedShowcase && (
-        <div className="fixed w-full inset-0 flex items-center justify-center z-50">
+        <div className="fixed w-full inset-0 flex items-center justify-center z-50  overflow-x-scroll">
           <div className="fixed inset-0 bg-black opacity-50"></div>
-          <div className="card p-5  hover:shadow-md bg-gray-50 border-collapse border-[2px] border-primeColor w-[800px] h-auto flex justify-center flex-col gap-7">
-            <div className="flex items-center justify-center">
-              <figure>
-                <img className="w-full h-[320px]" src={selectedShowcase.img} />
-              </figure>
+          <div className="card p-3 hover:shadow-md bg-gray-50 border-collapse border-[2px] w-[650px] h-auto flex justify-center flex-col gap-7 my-8">
+            <div className="flex justify-between -mb-5">
+              <h2 className="font-extrabold text-lg underline">
+                {selectedShowcase.name}
+              </h2>
+              <FaWindowClose
+                className="rounded-full text-red-600 cursor-pointer"
+                size={25}
+                onClick={closeModal}
+              />
             </div>
-            <div className="">
-              <h2>{selectedShowcase.name}</h2>
+            <div className="flex justify-center items-center -mb-5">
+              <img
+                className="object-cover rounded-2xl h-[320px]"
+                src={selectedShowcase.img}
+              />
+            </div>
+            <div className="card-actions justify-start -mb-5">
+              {selectedShowcase.imgStack.map((img, i) => (
+                <div className="shadow-md rounded-full p-1" key={i}>
+                  <img
+                    key={i}
+                    src={img}
+                    className="w-5 h-5 object-contain"
+                    alt=""
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="-mb-5">
               <p className="text-justify">{selectedShowcase.description}</p>
-              <button className="btn bg-primeColor" onClick={closeModal}>
-                Tutup
-              </button>
+            </div>
+            <div className="flex gap-4">
+              <a
+                href={selectedShowcase.githubRepo}
+                className="btn btn-primary py-2 rounded-2xl"
+              >
+                <FaGithub size={20} />
+                <span className="capitalize">Repositori Projek</span>
+              </a>
+              <a
+                href={selectedShowcase.githubRepo}
+                className="btn btn-secondary py-2 rounded-2xl"
+              >
+                <FaLink size={20} />
+                <span className="capitalize">Website</span>
+              </a>
             </div>
           </div>
         </div>
