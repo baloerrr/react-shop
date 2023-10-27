@@ -1,23 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useTheme } from '../../context/ThemeContext'
 
 function Toggle() {
-  const [theme, setTheme] = useState('light')
-
-  useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-  }, [theme])
-
-  const handleThemeSwitch = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
-  }
-
+  const { theme, toggleTheme } = useTheme()
   return (
     <label className="swap swap-rotate ml-3">
-      <input onClick={handleThemeSwitch} type="checkbox" />
+      <input onClick={toggleTheme} type="checkbox" />
 
       {/* sun icon */}
       <svg

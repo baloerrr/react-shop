@@ -15,9 +15,17 @@
 
 /* ============= NavLink active Start here ============== */
 nav .active li {
-  color: #EEEEEE;
-  font-weight: 600;
-  text-decoration: 1px underline #810CA8;
+  
+}
+
+.dark .navActiveEffect.active {
+  /* color: #810CA8; */
+  text-decoration: 2px underline #810CA8;
+}
+
+.navActiveEffect.active {
+  /* color: #810CA8; */
+  text-decoration: 2px underline #810CA8;
 }
 
 @media screen and (max-width: 665px) {

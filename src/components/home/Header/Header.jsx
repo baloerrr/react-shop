@@ -3,11 +3,9 @@ import { NavLink, useLocation } from 'react-router-dom'
 import { MdClose } from 'react-icons/md'
 import { HiMenuAlt2 } from 'react-icons/hi'
 import { motion } from 'framer-motion'
-import { logoLight } from '../../../assets/images'
 import { navBarList } from '../../../constants'
 import Flex from '../../designLayouts/Flex'
 import { FaSearch, FaUser, FaCaretDown, FaShoppingCart } from 'react-icons/fa'
-import { paginationItems } from '../../../constants'
 import { useSelector } from 'react-redux'
 import Logo from '../../Logo/Logo'
 import Toggle from '../../Toggle/Toggle'
@@ -34,13 +32,8 @@ const Header = () => {
     setShowSearchInput(!showSearchInput)
   }
 
-  useEffect(() => {
-    const filtered = paginationItems.filter((item) =>
-      item.productName.toLowerCase().includes(searchQuery.toLowerCase()),
-    )
-    setFilteredProducts(filtered)
-  }, [searchQuery])
   const location = useLocation()
+
   useEffect(() => {
     let ResponsiveMenu = () => {
       if (window.innerWidth < 667) {
@@ -54,9 +47,9 @@ const Header = () => {
   }, [])
 
   return (
-    <div className="w-full h-20 bg-white sticky top-0 z-50 border-b-[1px] border-b-gray-100 dark:bg-slate-900 dark:border-b-bgBase">
+    <div className="w-full h-20 bg-white sticky top-0 z-50 border-b-[1px] border-b-gray-100 dark:bg-slate-900 dark:border-b-gray-700">
       <nav className="h-full px-4 max-w-container mx-auto relative">
-        <Flex className="flex items-center md:justify-between mx-14 justify-between h-full">
+        <Flex className="flex items-center md:justify-between md:mx-14 mx-5 justify-between h-full">
           {/* Logo */}
           <Logo />
 
@@ -119,9 +112,6 @@ const Header = () => {
 
           {/* Navigation */}
           <div>
-            <button onClick={handleSearchInput} className="md:hidden">
-              <FaSearch className="w-4 h-4" />
-            </button>
             {showMenu && (
               <motion.ul
                 initial={{ y: 30, opacity: 0 }}
@@ -131,20 +121,40 @@ const Header = () => {
               >
                 <>
                   {navBarList.map(({ _id, title, link }) => (
-                    <NavLink
-                      key={_id}
-                      className="flex font-bold hover:font-bold w-20 h-6 justify-center items-center px-12 text-base text-bgDark  underline-offset-[4px] decoration-[1px] hover:text-[#262626] md:border-r-[2px] border-r-gray-300 hoverEffect last:border-r-0 dark:text-bgBase dark:hover:text-bgBase"
-                      to={link}
-                      state={{ data: location.pathname.split('/')[1] }}
-                    >
-                      <li>{title}</li>
-                    </NavLink>
+                    <div className="flex items-center gap-2" key={_id}>
+                      <NavLink
+                        to={link}
+                        state={{ data: location.pathname.split('/')[1] }}
+                        className={`navActiveEffect tracking-[1px] text-[15px] font-extrabold text-black hover:text-primeColor dark:text-bgBase dark:hover:text-primeColor`}
+                      >
+                        {title}
+                      </NavLink>
+                      <li className="text-gray-300">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          stroke="currentColor"
+                          class="w-4 h-4 current-fill"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                          />
+                        </svg>
+                      </li>
+                    </div>
                   ))}
 
                   <Toggle />
                 </>
               </motion.ul>
             )}
+            <div className="md:hidden mr-10">
+              <Toggle />
+            </div>
             <HiMenuAlt2
               onClick={() => setSidenav(!sidenav)}
               className="inline-block md:hidden cursor-pointer w-8 h-6 absolute top-6 right-4"
@@ -160,11 +170,7 @@ const Header = () => {
                   className="w-[80%] h-full relative"
                 >
                   <div className="w-full h-full bg-primeColor p-6">
-                    <img
-                      className="w-28 mb-6"
-                      src={logoLight}
-                      alt="logoLight"
-                    />
+                    W
                     <ul className="text-gray-200 flex flex-col gap-2">
                       {navBarList.map((item) => (
                         <li

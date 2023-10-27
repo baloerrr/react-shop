@@ -1,34 +1,3 @@
-import logo from "./orebiLogo.png";
-import logoLight from "./logoLight.png";
-import bannerImgOne from "./banner/bannerImgOne.webp";
-import bannerImgTwo from "./banner/bannerImgTwo.webp";
-import bannerImgThree from "./banner/bannerImgThree.webp";
-import saleImgOne from "./sale/saleImgOne.webp";
-import saleImgTwo from "./sale/saleImgTwo.webp";
-import saleImgThree from "./sale/saleImgThree.webp";
-// ============== Products Start here ====================
-// New Arrivals
-import newArrOne from "./products/newArrival/newArrOne.webp";
-import newArrTwo from "./products/newArrival/newArrTwo.webp";
-import newArrThree from "./products/newArrival/newArrThree.webp";
-import newArrFour from "./products/newArrival/newArrFour.webp";
-
-// Best Sellers
-import bestSellerOne from "./products/bestSeller/bestSellerOne.webp";
-import bestSellerTwo from "./products/bestSeller/bestSellerTwo.webp";
-import bestSellerThree from "./products/bestSeller/bestSellerThree.webp";
-import bestSellerFour from "./products/bestSeller/bestSellerFour.webp";
-
-// Special Offers
-import spfOne from "./products/specialOffer/spfOne.webp";
-import spfTwo from "./products/specialOffer/spfTwo.webp";
-import spfThree from "./products/specialOffer/spfThree.webp";
-import spfFour from "./products/specialOffer/spfFour.webp";
-
-// Year Product
-import productOfTheYear from "./products/productOfTheYear.webp";
-// ============== Products End here ======================
-
 import paymentCard from "./payment.png";
 import emptyCart from "../images/emptyCart.png";
 
@@ -37,46 +6,102 @@ import IndoGithubers from "./showcase/IndoGithubers.png"
 import PengelolaanBuku from "./showcase/PengelolaanBuku.png"
 import GrensaStiker from "./showcase/GrensaStiker.png"
 import Qovier from "./showcase/Qovier.png"
+import Nyatet from "./showcase/Nyatet.png"
+import Khaidar from "./showcase/Khaidar.png"
+import Ceritain from "./showcase/Ceritain.png"
+import IamRifai from "./showcase/IamRifai.png"
+import Instafam from "./showcase/Instafam.png"
+import Luminous from "./showcase/Luminous.png"
+import Ngajax from "./showcase/Ngajax.png"
+import Railway from "./showcase/Railway.png"
+import SmartCulture from "./showcase/SmartCulture.png"
+import Weekly from "./showcase/Weekly.png"
+import Forestapi from "./showcase/Forestapi.png"
+import Fresh4u from "./showcase/Fresh4u.png"
+import Pandev from "./showcase/Pandev.png"
+import Yazzlink from "./showcase/Yazzlink.png"
+import Klass from "./showcase/Klass.png"
 // ============== Showcase End here ======================
+
+// Techstack
+import css from "./techstack/css-3.png"
+import disyui from "./techstack/daisyui.svg"
+import framer from "./techstack/framer.svg"
+import html from "./techstack/html.png"
+import js from "./techstack/js.png"
+import laravel from "./techstack/laravel.svg"
+import livewire from "./techstack/livewire.png"
+import mongodb from "./techstack/mongodb.svg"
+import nextjs from "./techstack/nextjs.svg"
+import nodejs from "./techstack/nodejs.svg"
+import nuxtjs from "./techstack/nuxt-js.png"
+import reactjs from "./techstack/physics.png"
+import pnpm from "./techstack/pnpm.png"
+import postgresql from "./techstack/postgresql.png"
+import prisma from "./techstack/prisma.svg"
+import redux from "./techstack/redux-icon.png"
+import swiper from "./techstack/swiper-logo.svg"
+import tailwind from "./techstack/tailwind.png"
+import vite from "./techstack/Vite.js.png"
+import vitest from "./techstack/vitest.svg"
+import zustand from "./techstack/zustand.png"
+import firebase from "./techstack/firebase.png"
+import flask from "./techstack/flask.svg"
+import bootstrap from "./techstack/bootstrap.png"
+import nestjs from "./techstack/nestjs.svg"
+// ============== Techstack End here ======================
 
 
 export {
-  logo,
-  logoLight,
-  bannerImgOne,
-  bannerImgTwo,
-  bannerImgThree,
-  saleImgOne,
-  saleImgTwo,
-  saleImgThree,
-  // ===================== Products start here ============
-  // New Arrivals
-  newArrOne,
-  newArrTwo,
-  newArrThree,
-  newArrFour,
-
-  // Best Sellers
-  bestSellerOne,
-  bestSellerTwo,
-  bestSellerThree,
-  bestSellerFour,
-
-  // Sprcial Offers
-  spfOne,
-  spfTwo,
-  spfThree,
-  spfFour,
-
-  // Year Product
-  productOfTheYear,
-  // ===================== Products End here ==============
 
 // Showcase
   IndoGithubers,
   PengelolaanBuku,
   GrensaStiker,
   Qovier,
+  Nyatet,
+  Ceritain,
+  Forestapi,
+  Fresh4u,
+  Instafam,
+  IamRifai,
+  Khaidar,
+  Luminous,
+  Ngajax,
+  Railway,
+  SmartCulture,
+  Weekly,
+  Pandev,
+  Yazzlink,
+  Klass,
+// ============== Showcase End here ======================
+
+// Showcase
+  css,
+  disyui,
+  framer,
+  html,
+  js,
+  laravel,
+  livewire,
+  mongodb,
+  nextjs,
+  nodejs,
+  nuxtjs,
+  pnpm,
+  postgresql,
+  prisma,
+  reactjs,
+  redux,
+  swiper,
+  tailwind,
+  vite,
+  vitest,
+  zustand,
+  firebase,
+  flask,
+  bootstrap,
+  nestjs,
 // ============== Showcase End here ======================
 
   paymentCard,

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FaGithub, FaLink, FaHeart } from 'react-icons/fa'
+import { FaGithub, FaLink, FaHeart, FaDonate } from 'react-icons/fa'
 import { ShowCaseList } from '../../../constants'
 
 function ShowcaseCard() {
@@ -23,11 +23,11 @@ function ShowcaseCard() {
         <div
           key={showcase.id}
           onClick={() => openModal(showcase)}
-          className="card w-full md:w-[380px] transition-transform delay-150 hover:-translate-y-2 hover:cursor-pointer hover:shadow-primeColor hover:shadow-md bg-gray-50 border-collapse border-[2px] border-violet-600"
+          className="card w-full md:w-[380px] transition delay-150 ease-in-out duration-300 hover:duration-300 hover:cursor-pointer hover:shadow-[0px_0px_19px_-5px_rgba(129,12,168,1)] bg-gray-50 border-collapse border-[2px] shadow-[0px_0px_19px_-5px_rgba(217,217,217,0.70)]"
         >
           <figure>
             <img
-              className="w-full md:h-[210px]"
+              className="object-cover md:h-[210px]"
               src={showcase.img}
               alt="Shoes"
             />
@@ -37,40 +37,59 @@ function ShowcaseCard() {
               <h2 className="card-title">{showcase.name}</h2>
               <h2 className="text-sm font-bold italic">{showcase.user}</h2>
             </div>
-            <div className="card-actions justify-end my-2">
-              {showcase.techStack.map((tech, i) => (
-                <div key={i} className="badge badge-outline">
-                  {tech}
+            <div className="card-actions justify-start flex gap-5 my-2">
+              {showcase.imgStack.map((img, i) => (
+                <div className="shadow-md rounded-full p-1" key={i}>
+                  <img src={img} className="w-5 h-5 object-contain" alt="" />
+                  {/* {showcase.techStack.map((tech, i) => (
+                    <span>{tech[i]}</span>
+                  ))} */}
                 </div>
               ))}
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-between mt-3">
               <div className="flex gap-4 items-center">
                 <Link
                   onClick={(e) => e.stopPropagation()}
-                  className="btn z-30 rounded-full"
+                  className="rounded-full hover:bg-primeColor p-2 transition ease-in-out hover:shadow-md hover:shadow-primeColor hover:text-white hover:duration-300"
                 >
-                  <FaHeart size={17} />
+                  <FaHeart size={20} />
                 </Link>
+
                 <span className="text-textPrimeColor font-medium">
                   {showcase.like}
                 </span>
               </div>
-              <div className="flex gap-4">
-                <a
-                  href={showcase.githubRepo}
-                  onClick={(e) => e.stopPropagation()}
-                  className="btn rounded-full"
-                >
-                  <FaGithub size={17} />
-                </a>
-                <a
-                  href={showcase.linkWeb}
-                  onClick={(e) => e.stopPropagation()}
-                  className="btn rounded-full"
-                >
-                  <FaLink size={17} />
-                </a>
+              <div
+                className="flex gap-4
+              "
+              >
+                <div className="rounded-full hover:bg-primeColor p-2 transition ease-in-out hover:shadow-md hover:shadow-primeColor hover:text-white hover:duration-300">
+                  <a
+                    href={showcase.githubRepo}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <FaDonate size={20} />
+                  </a>
+                </div>
+                <div className="rounded-full hover:bg-primeColor p-2 transition ease-in-out hover:shadow-md hover:shadow-primeColor hover:text-white hover:duration-300">
+                  <a
+                    href={showcase.githubRepo}
+                    onClick={(e) => e.stopPropagation()}
+                    className="rounded-full"
+                  >
+                    <FaGithub size={20} />
+                  </a>
+                </div>
+                <div className="rounded-full hover:bg-primeColor p-2 transition ease-in-out hover:shadow-md hover:shadow-primeColor hover:text-white hover:duration-300">
+                  <a
+                    href={showcase.linkWeb}
+                    onClick={(e) => e.stopPropagation()}
+                    className="rounded-full"
+                  >
+                    <FaLink size={20} />
+                  </a>
+                </div>
               </div>
             </div>
           </div>

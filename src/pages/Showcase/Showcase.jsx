@@ -9,13 +9,6 @@ function Showcase() {
       <div className="max-w-container mx-14 px-4">
         <ShowcaseList />
       </div>
-
-      {/* <div>
-      </div> */}
-
-      {/* <div className="max-w-container mx-14 px-4">
-        
-      </div> */}
     </div>
   )
 }

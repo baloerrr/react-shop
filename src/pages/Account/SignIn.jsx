@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Divider } from '@mui/material'
-import { FaGoogle } from 'react-icons/fa'
+import { FaGithub, FaGoogle } from 'react-icons/fa'
 import Logo from '../../components/Logo/Logo'
+import Toggle from '../../components/Toggle/Toggle'
+import { useAuth } from '../../hook/useAuth'
+import { useNavigate } from 'react-router-dom'
 
 const SignIn = () => {
   const [email, setEmail] = useState('')
@@ -11,6 +14,22 @@ const SignIn = () => {
   const [errPassword, setErrPassword] = useState('')
 
   const [successMsg, setSuccessMsg] = useState('')
+
+  const [currentUser, setCurrentUser] = useState(null)
+
+  const navigate = useNavigate()
+
+  const { handleLoginGithub } = useAuth()
+
+  const handleGithub = (e) => {
+    e.preventDefault()
+    try {
+      handleLoginGithub()
+      navigate('/')
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
 
   const handleEmail = (e) => {
     setEmail(e.target.value)
@@ -45,6 +64,11 @@ const SignIn = () => {
       <div className="div absolute top-5 left-10 md:ml-10">
         <Logo />
       </div>
+
+      <div className="div absolute top-5 right-10 md:mr-10 md:mt-3">
+        <Toggle />
+      </div>
+
       <form>
         <h1 className="font-titleFont text-textPrimeColor text-center decoration-[1px] font-semibold md:text-[50px] tracking-[3px]">
           Masuk
@@ -57,7 +81,14 @@ const SignIn = () => {
           <div className="flex flex-col gap-3 ">
             {/* Email */}
             <div className="flex flex-col gap-.5">
-              <input
+              <button
+                onClick={handleGithub}
+                className="btn w-full flex justify-start"
+              >
+                <FaGithub size={17} />
+                <span>Masuk Dengan Github</span>
+              </button>
+              {/* <input
                 onChange={handleEmail}
                 value={email}
                 className="w-full h-12 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-[5px] border-[1px] bg-bgBase border-gray-400 outline-none mb-2"
@@ -69,44 +100,41 @@ const SignIn = () => {
                   <span className="font-bold italic mr-1">!</span>
                   {errEmail}
                 </p>
-              )}
+              )} */}
             </div>
 
             {/* Password */}
             <div className="flex flex-col gap-.5">
-              <input
-                onChange={handlePassword}
-                value={password}
-                className="w-full h-12 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-[5px] border-[1px] bg-bgBase border-gray-400 outline-none mb-2"
-                type="password"
-                placeholder="Create password"
-              />
-              {errPassword && (
+              <button className="btn w-full flex justify-start">
+                <FaGoogle size={17} />
+                <span>Masuk Dengan Google</span>
+              </button>
+              {/* {errPassword && (
                 <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
                   <span className="font-bold italic mr-1">!</span>
                   {errPassword}
                 </p>
-              )}
+              )} */}
             </div>
 
-            <button
+            {/* <button
               onClick={handleSignUp}
               className="btn bg-primeColor text-gray-200 hover:text-white cursor-pointer w-full text-base font-medium h-12 rounded-md text-[15px] duration-300 Sk-Modernist-Bold tracking-[0.5px]"
             >
               Masuk
-            </button>
-
+            </button> */}
+            {/* 
             <Divider className="text-white" light={true}>
               or
-            </Divider>
+            </Divider> */}
 
-            <button
+            {/* <button
               onClick={handleSignUp}
               className="btn bg-bgBase text-bgDark hover:text-white cursor-pointer w-full text-base font-medium h-12 rounded-md text-[15px] duration-300 Sk-Modernist-Bold tracking-[0.5px]"
             >
               <FaGoogle className="text-neutral" />
               Lanjutkan Dengan Google
-            </button>
+            </button> */}
           </div>
         </div>
       </form>
