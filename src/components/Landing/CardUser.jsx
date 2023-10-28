@@ -1,7 +1,13 @@
 import React, { useState } from 'react'
 import { ShowCaseList } from '../../constants'
 import { Link } from 'react-router-dom'
-import { FaDonate, FaGithub, FaHeart, FaLink } from 'react-icons/fa'
+import {
+  FaDonate,
+  FaGithub,
+  FaHeart,
+  FaLink,
+  FaWindowClose,
+} from 'react-icons/fa'
 
 function CardUser(props) {
   const [showModal, setShowModal] = useState(false)
