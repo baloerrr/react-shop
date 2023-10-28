@@ -144,7 +144,7 @@ function ShowcaseCard() {
                 <span className="capitalize font-bold">Repositori Github</span>
               </a>
               <a
-                href={selectedShowcase.githubRepo}
+                href={selectedShowcase.linkWeb}
                 className="btn btn-secondary py-2 rounded-2xl"
               >
                 <FaLink size={20} />
