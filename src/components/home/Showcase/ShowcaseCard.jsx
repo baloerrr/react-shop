@@ -71,10 +71,7 @@ function ShowcaseCard() {
               "
               >
                 <div className="rounded-full hover:bg-primeColor p-2 transition ease-in-out hover:shadow-md hover:shadow-primeColor hover:text-white hover:duration-300">
-                  <a
-                    href={showcase.githubRepo}
-                    onClick={(e) => e.stopPropagation()}
-                  >
+                  <a onClick={(e) => e.stopPropagation()}>
                     <FaDonate size={20} />
                   </a>
                 </div>
@@ -104,9 +101,9 @@ function ShowcaseCard() {
 
       {/* Modal untuk menampilkan deskripsi */}
       {showModal && selectedShowcase && (
-        <div className="fixed w-full inset-0 flex items-center justify-center z-50  overflow-x-scroll">
+        <div className="fixed w-full inset-0 flex  items-center justify-center z-50 overflow-x-scroll">
           <div className="fixed inset-0 bg-black opacity-50"></div>
-          <div className="card p-3 hover:shadow-md bg-gray-50 border-collapse border-[2px] w-[650px] h-auto flex justify-center flex-col gap-7 my-8">
+          <div className="card mx-5 p-3 hover:shadow-md bg-gray-50 border-collapse border-[2px] max-w-screen-lg  w-full h-auto flex justify-center flex-col gap-7 my-8">
             <div className="flex justify-between -mb-5">
               <h2 className="font-extrabold text-lg underline">
                 {selectedShowcase.name}
@@ -119,7 +116,7 @@ function ShowcaseCard() {
             </div>
             <div className="flex justify-center items-center -mb-5">
               <img
-                className="object-cover rounded-2xl h-[320px]"
+                className="object-cover rounded-2xl max-h-[320px] w-full"
                 src={selectedShowcase.img}
               />
             </div>
@@ -138,20 +135,20 @@ function ShowcaseCard() {
             <div className="-mb-5">
               <p className="text-justify">{selectedShowcase.description}</p>
             </div>
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href={selectedShowcase.githubRepo}
                 className="btn btn-primary py-2 rounded-2xl"
               >
                 <FaGithub size={20} />
-                <span className="capitalize">Repositori Projek</span>
+                <span className="capitalize font-bold">Repositori Github</span>
               </a>
               <a
                 href={selectedShowcase.githubRepo}
                 className="btn btn-secondary py-2 rounded-2xl"
               >
                 <FaLink size={20} />
-                <span className="capitalize">Website</span>
+                <span className="capitalize font-bold">Website</span>
               </a>
             </div>
           </div>

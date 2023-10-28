@@ -10,18 +10,18 @@ const BannerBottom = () => {
         </h1>
       </div>
       <div className="flex justify-center my-4">
-        <div className="md:flex relative w-full lg:w-[600px] h-[50px] text-base text-primeColor bg-[#F5F5F3] hidden items-center gap-2 justify-center px-6 rounded-xl">
+        <div className="md:flex relative w-full lg:w-[600px] h-[50px] text-base text-primeColor bg-[#F5F5F3]  items-center gap-2 justify-center px-6 rounded-xl">
           <input
-            className="md:flex hidden text-lg placeholder:text-lg flex-1 h-full outline-none bg-[#F5F5F3] placeholder:text-[#C4C4C4] placeholder:text-[14px]"
+            className="md:flex  text-lg placeholder:text-lg flex-1 h-full outline-none bg-[#F5F5F3] placeholder:text-[#C4C4C4] placeholder:text-[14px]"
             type="text"
             placeholder="Search Showcase ⚡"
           />
           <button>
-            <FaSearch className="w-5 h-5" />
+            <FaSearch className="w-5 h-5 absolute right-0 top-2 mt-1 mr-5" />
           </button>
         </div>
       </div>
-      <div className="flex justify-center gap-3">
+      {/* <div className="flex justify-center gap-3">
         <button className="px-4 py-1 border-[1px] border-gray-600 bg-transparent rounded-full p-0 dark:text-bgBase">
           React JS
         </button>
@@ -49,7 +49,7 @@ const BannerBottom = () => {
         <button className="px-4 py-1 border-[1px] border-gray-600 bg-transparent rounded-full p-0 dark:text-bgBase">
           React JS
         </button>
-      </div>
+      </div> */}
     </div>
   )
 }

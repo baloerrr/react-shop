@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import { BsCheckCircleFill } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
+import Logo from '../../components/Logo/Logo'
+import { FaGithub, FaGoogle } from 'react-icons/fa'
+import { Divider } from '@mui/material'
+import Toggle from '../../components/Toggle/Toggle'
 
 const SignUp = () => {
   // ============= Initial State Start here =============
@@ -129,217 +133,99 @@ const SignUp = () => {
     }
   }
   return (
-    <div className="w-full h-screen flex items-center justify-center">
-      <div className="w-full lgl:w-[500px] h-full flex flex-col justify-center">
-        {successMsg ? (
-          <div className="w-[500px]">
-            <p className="w-full px-4 py-10 text-green-500 font-medium font-titleFont">
-              {successMsg}
-            </p>
-            <Link to="/signin">
-              <button
-                className="w-full h-10 bg-primeColor rounded-md text-gray-200 text-base font-titleFont font-semibold 
-            tracking-wide hover:bg-black hover:text-white duration-300"
-              >
-                Sign in
-              </button>
-            </Link>
-          </div>
-        ) : (
-          <form className="w-full lgl:w-[500px] h-screen flex items-center justify-center">
-            <div className="px-6 py-4 w-full h-[96%] flex flex-col justify-start overflow-y-scroll scrollbar-thin scrollbar-thumb-primeColor">
-              <h1 className="font-titleFont underline underline-offset-4 decoration-[1px] font-semibold text-2xl mdl:text-3xl mb-4">
-                Create your account
-              </h1>
-              <div className="flex flex-col gap-3">
-                {/* client name */}
-                <div className="flex flex-col gap-.5">
-                  <p className="font-titleFont text-base font-semibold text-gray-600">
-                    Full Name
-                  </p>
-                  <input
-                    onChange={handleName}
-                    value={clientName}
-                    className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
-                    type="text"
-                    placeholder="eg. John Doe"
-                  />
-                  {errClientName && (
-                    <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
-                      <span className="font-bold italic mr-1">!</span>
-                      {errClientName}
-                    </p>
-                  )}
-                </div>
-                {/* Email */}
-                <div className="flex flex-col gap-.5">
-                  <p className="font-titleFont text-base font-semibold text-gray-600">
-                    Work Email
-                  </p>
-                  <input
-                    onChange={handleEmail}
-                    value={email}
-                    className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
-                    type="email"
-                    placeholder="john@workemail.com"
-                  />
-                  {errEmail && (
-                    <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
-                      <span className="font-bold italic mr-1">!</span>
-                      {errEmail}
-                    </p>
-                  )}
-                </div>
-                {/* Phone Number */}
-                <div className="flex flex-col gap-.5">
-                  <p className="font-titleFont text-base font-semibold text-gray-600">
-                    Phone Number
-                  </p>
-                  <input
-                    onChange={handlePhone}
-                    value={phone}
-                    className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
-                    type="text"
-                    placeholder="008801234567891"
-                  />
-                  {errPhone && (
-                    <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
-                      <span className="font-bold italic mr-1">!</span>
-                      {errPhone}
-                    </p>
-                  )}
-                </div>
-                {/* Password */}
-                <div className="flex flex-col gap-.5">
-                  <p className="font-titleFont text-base font-semibold text-gray-600">
-                    Password
-                  </p>
-                  <input
-                    onChange={handlePassword}
-                    value={password}
-                    className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
-                    type="password"
-                    placeholder="Create password"
-                  />
-                  {errPassword && (
-                    <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
-                      <span className="font-bold italic mr-1">!</span>
-                      {errPassword}
-                    </p>
-                  )}
-                </div>
-                {/* Address */}
-                <div className="flex flex-col gap-.5">
-                  <p className="font-titleFont text-base font-semibold text-gray-600">
-                    Address
-                  </p>
-                  <input
-                    onChange={handleAddress}
-                    value={address}
-                    className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
-                    type="text"
-                    placeholder="road-001, house-115, example area"
-                  />
-                  {errAddress && (
-                    <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
-                      <span className="font-bold italic mr-1">!</span>
-                      {errAddress}
-                    </p>
-                  )}
-                </div>
-                {/* City */}
-                <div className="flex flex-col gap-.5">
-                  <p className="font-titleFont text-base font-semibold text-gray-600">
-                    City
-                  </p>
-                  <input
-                    onChange={handleCity}
-                    value={city}
-                    className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
-                    type="text"
-                    placeholder="Your city"
-                  />
-                  {errCity && (
-                    <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
-                      <span className="font-bold italic mr-1">!</span>
-                      {errCity}
-                    </p>
-                  )}
-                </div>
-                {/* Country */}
-                <div className="flex flex-col gap-.5">
-                  <p className="font-titleFont text-base font-semibold text-gray-600">
-                    Country
-                  </p>
-                  <input
-                    onChange={handleCountry}
-                    value={country}
-                    className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
-                    type="text"
-                    placeholder="Your country"
-                  />
-                  {errCountry && (
-                    <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
-                      <span className="font-bold italic mr-1">!</span>
-                      {errCountry}
-                    </p>
-                  )}
-                </div>
-                {/* Zip code */}
-                <div className="flex flex-col gap-.5">
-                  <p className="font-titleFont text-base font-semibold text-gray-600">
-                    Zip/Postal code
-                  </p>
-                  <input
-                    onChange={handleZip}
-                    value={zip}
-                    className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
-                    type="text"
-                    placeholder="Your country"
-                  />
-                  {errZip && (
-                    <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
-                      <span className="font-bold italic mr-1">!</span>
-                      {errZip}
-                    </p>
-                  )}
-                </div>
-                {/* Checkbox */}
-                <div className="flex items-start mdl:items-center gap-2">
-                  <input
-                    onChange={() => setChecked(!checked)}
-                    className="w-4 h-4 mt-1 mdl:mt-0 cursor-pointer"
-                    type="checkbox"
-                  />
-                  <p className="text-sm text-primeColor">
-                    I agree to the OREBI{' '}
-                    <span className="text-blue-500">Terms of Service </span>and{' '}
-                    <span className="text-blue-500">Privacy Policy</span>.
-                  </p>
-                </div>
-                <button
-                  onClick={handleSignUp}
-                  className={`${
-                    checked
-                      ? 'bg-primeColor hover:bg-black hover:text-white cursor-pointer'
-                      : 'bg-gray-500 hover:bg-gray-500 hover:text-gray-200 cursor-none'
-                  } w-full text-gray-200 text-base font-medium h-10 rounded-md hover:text-white duration-300`}
-                >
-                  Create Account
-                </button>
-                <p className="text-sm text-center font-titleFont font-medium">
-                  Don't have an Account?{' '}
-                  <Link to="/signin">
-                    <span className="hover:text-blue-600 duration-300">
-                      Sign in
-                    </span>
-                  </Link>
-                </p>
-              </div>
-            </div>
-          </form>
-        )}
+    <div className="w-full relative h-screen dark:bg-bgDark flex items-center justify-center">
+      <div className="div absolute top-5 left-10 md:ml-10">
+        <Logo />
       </div>
+
+      <div className="div absolute top-5 right-10 md:mr-10 md:mt-3">
+        <Toggle />
+      </div>
+
+      <form>
+        <h1 className="font-titleFont text-textPrimeColor text-center decoration-[1px] font-semibold md:text-[50px] tracking-[3px]">
+          Daftar
+          <span className="dark:text-bgBase text-bgDark rounded-full">.</span>
+        </h1>
+        <p className="text-center dark:text-bgBase font-medium my-2 w-full text-[17px] tracking-[2px] Sk-Modernist-Regular">
+          Ayoo Bergabung Dan Temukan Showcase Inspiratif!
+        </p>
+        <div className="px-6 py-4 w-full h-[90%] flex flex-col justify-center lgl:w-[450px]">
+          <div className="flex flex-col gap-3 ">
+            {/* Email */}
+            <div className="flex flex-col gap-.5">
+              <Link
+                to={'/'}
+                className="btn w-full bg-transparent border-primeColor hover:bg-primeColor hover:text-white flex justify-start dark:hover:border-primeColor capitalize"
+              >
+                <FaGithub className="dark:text-white" size={27} />
+                <span className="text-lg dark:text-white">
+                  Daftar Dengan Github
+                </span>
+              </Link>
+              {/* <input
+                onChange={handleEmail}
+                value={email}
+                className="w-full h-12 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-[5px] border-[1px] bg-bgBase border-gray-400 outline-none mb-2"
+                type="email"
+                placeholder="john@workemail.com"
+              />
+              {errEmail && (
+                <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
+                  <span className="font-bold italic mr-1">!</span>
+                  {errEmail}
+                </p>
+              )} */}
+            </div>
+
+            {/* Password */}
+            <div className="flex flex-col gap-.5">
+              <Link
+                to={'/'}
+                className="btn w-full bg-transparent border-primeColor hover:bg-primeColor hover:text-white flex justify-start dark:hover:border-primeColor capitalize"
+              >
+                <FaGoogle className="dark:text-white" size={27} />
+                <span className="text-lg dark:text-white">
+                  Daftar Dengan Google
+                </span>
+              </Link>
+              {/* {errPassword && (
+                <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
+                  <span className="font-bold italic mr-1">!</span>
+                  {errPassword}
+                </p>
+              )} */}
+            </div>
+
+            {/* <button
+              onClick={handleSignUp}
+              className="btn bg-primeColor text-gray-200 hover:text-white cursor-pointer w-full text-base font-medium h-12 rounded-md text-[15px] duration-300 Sk-Modernist-Bold tracking-[0.5px]"
+            >
+              Masuk
+            </button> */}
+
+            {/* <button
+              onClick={handleSignUp}
+              className="btn bg-bgBase text-bgDark hover:text-white cursor-pointer w-full text-base font-medium h-12 rounded-md text-[15px] duration-300 Sk-Modernist-Bold tracking-[0.5px]"
+            >
+              <FaGoogle className="text-neutral" />
+              Lanjutkan Dengan Google
+            </button> */}
+            <Divider className="text-black dark:text-white " light={true}>
+              or
+            </Divider>
+          </div>
+        </div>
+
+        <div className="flex justify-center">
+          <p className="font-bold dark:text-white">
+            Sudah memiliki akun?{' '}
+            <Link className="underline text-primeColor" to={'/signin'}>
+              Masuk
+            </Link>
+          </p>
+        </div>
+      </form>
     </div>
   )
 }

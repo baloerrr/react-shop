@@ -4,7 +4,7 @@ import { FaGithub, FaGoogle } from 'react-icons/fa'
 import Logo from '../../components/Logo/Logo'
 import Toggle from '../../components/Toggle/Toggle'
 import { useAuth } from '../../hook/useAuth'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const SignIn = () => {
   const [email, setEmail] = useState('')
@@ -74,20 +74,22 @@ const SignIn = () => {
           Masuk
           <span className="dark:text-bgBase text-bgDark rounded-full">.</span>
         </h1>
-        <p className="text-center dark:text-bgBase font-medium my-2 w-full text-[17px] tracking-[2px] Sk-Modernist-Regular">
+        {/* <p className="text-center dark:text-bgBase font-medium my-2 w-full text-[17px] tracking-[2px] Sk-Modernist-Regular">
           Ayoo Bergabung Dan Temukan Showcase Inspiratif!
-        </p>
+        </p> */}
         <div className="px-6 py-4 w-full h-[90%] flex flex-col justify-center lgl:w-[450px]">
           <div className="flex flex-col gap-3 ">
             {/* Email */}
             <div className="flex flex-col gap-.5">
-              <button
-                onClick={handleGithub}
-                className="btn w-full flex justify-start"
+              <Link
+                to={'/'}
+                className="btn w-full bg-transparent border-primeColor hover:bg-primeColor hover:text-white dark:hover:border-primeColor flex justify-start capitalize"
               >
-                <FaGithub size={17} />
-                <span>Masuk Dengan Github</span>
-              </button>
+                <FaGithub className="dark:text-white" size={27} />
+                <span className="text-lg dark:text-white">
+                  Masuk Dengan Github
+                </span>
+              </Link>
               {/* <input
                 onChange={handleEmail}
                 value={email}
@@ -105,10 +107,15 @@ const SignIn = () => {
 
             {/* Password */}
             <div className="flex flex-col gap-.5">
-              <button className="btn w-full flex justify-start">
-                <FaGoogle size={17} />
-                <span>Masuk Dengan Google</span>
-              </button>
+              <Link
+                to={'/'}
+                className="btn w-full bg-transparent border-primeColor hover:bg-primeColor hover:text-white flex justify-start dark:hover:border-primeColor capitalize"
+              >
+                <FaGoogle className="dark:text-white" size={27} />
+                <span className="text-lg dark:text-white">
+                  Masuk Dengan Google
+                </span>
+              </Link>
               {/* {errPassword && (
                 <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
                   <span className="font-bold italic mr-1">!</span>
@@ -123,10 +130,6 @@ const SignIn = () => {
             >
               Masuk
             </button> */}
-            {/* 
-            <Divider className="text-white" light={true}>
-              or
-            </Divider> */}
 
             {/* <button
               onClick={handleSignUp}
@@ -135,7 +138,19 @@ const SignIn = () => {
               <FaGoogle className="text-neutral" />
               Lanjutkan Dengan Google
             </button> */}
+            <Divider className="text-black dark:text-white " light={true}>
+              or
+            </Divider>
           </div>
+        </div>
+
+        <div className="flex justify-center">
+          <p className="font-bold dark:text-white">
+            Belum memiliki akun?{' '}
+            <Link className="underline text-primeColor" to={'/signup'}>
+              Daftar
+            </Link>
+          </p>
         </div>
       </form>
     </div>

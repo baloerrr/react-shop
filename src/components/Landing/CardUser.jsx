@@ -1,29 +1,157 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { ShowCaseList } from '../../constants'
+import { Link } from 'react-router-dom'
+import { FaDonate, FaGithub, FaHeart, FaLink } from 'react-icons/fa'
 
 function CardUser(props) {
+  const [showModal, setShowModal] = useState(false)
+  const [selectedShowcase, setSelectedShowcase] = useState(null)
+
+  const openModal = (showcase) => {
+    setSelectedShowcase(showcase)
+    setShowModal(true)
+  }
+
+  const closeModal = () => {
+    setSelectedShowcase(null)
+    setShowModal(false)
+  }
+
   return (
-    <div
-      className="md:w-[280px] md:h-[380px] w-[100%] h-[60vh] dark:bg-[#33106A] bg-[#eeee] rounded-[10px] flex flex-col transform transition-transform md:hover:scale-105 hover:ring-2 
-          hover:shadow-primeColor hover:shadow-lg dark:hover:shadow-[#9153F4]  hover:duration-300 ease-in-out overflow-hidden"
-    >
-      <div className="w-full h-[55%] rounded-t-[10px] overflow-hidden">
-        <img src={props.img} alt="" className="w-full h-full  object-cover" />
-      </div>
-      <div className="flex flex-col justify-center ml-5 mt-5">
-        <h1 className="text-[16px] font-bold text-[#1B2430] dark:text-[#ffff]">
-          Amal Cooding
-        </h1>
-        <h2 className="text-[14px] font-bold">Back End Developer</h2>
-        <p className="text-[13px] text-[#1B2430] dark:text-[#ffff] mt-2">
-          Amal Adalah Seorang Back End Developer Yang sudah berpengalaman.
-        </p>
-        <div className="mt-[14px]">
-          <button className="btn btn-sm rounded-[5px] w-[110px] h-[20px] bg-primeColor border-none dark:bg-[#9153F4] dark:hover:bg-[#9153F4] hover:bg-primeColor text-white">
-            Profile
-          </button>
+    <>
+      {ShowCaseList.slice(0, 3).map((showcase) => (
+        <div
+          key={showcase.id}
+          onClick={() => openModal(showcase)}
+          className="card w-full md:w-[380px] transition delay-150 ease-in-out duration-300 hover:duration-300 hover:cursor-pointer hover:shadow-[0px_0px_19px_-5px_rgba(129,12,168,1)] bg-gray-50 border-collapse border-[2px] shadow-[0px_0px_19px_-5px_rgba(217,217,217,0.70)]"
+        >
+          <figure>
+            <img
+              className="object-cover md:h-[210px]"
+              src={showcase.img}
+              alt="Shoes"
+            />
+          </figure>
+          <div className="card-body">
+            <div className="flex justify-between">
+              <h2 className="card-title">{showcase.name}</h2>
+              <h2 className="text-sm font-bold italic">{showcase.user}</h2>
+            </div>
+            <div className="card-actions justify-start flex gap-5 my-2">
+              {showcase.imgStack.map((img, i) => (
+                <div className="shadow-md rounded-full p-1" key={i}>
+                  <img src={img} className="w-5 h-5 object-contain" alt="" />
+                  {/* {showcase.techStack.map((tech, i) => (
+                    <span>{tech[i]}</span>
+                  ))} */}
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-between mt-3">
+              <div className="flex gap-4 items-center">
+                <Link
+                  onClick={(e) => e.stopPropagation()}
+                  className="rounded-full hover:bg-primeColor p-2 transition ease-in-out hover:shadow-md hover:shadow-primeColor hover:text-white hover:duration-300"
+                >
+                  <FaHeart size={20} />
+                </Link>
+
+                <span className="text-textPrimeColor font-medium">
+                  {showcase.like}
+                </span>
+              </div>
+              <div
+                className="flex gap-4
+              "
+              >
+                <div className="rounded-full hover:bg-primeColor p-2 transition ease-in-out hover:shadow-md hover:shadow-primeColor hover:text-white hover:duration-300">
+                  <a
+                    href={showcase.githubRepo}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <FaDonate size={20} />
+                  </a>
+                </div>
+                <div className="rounded-full hover:bg-primeColor p-2 transition ease-in-out hover:shadow-md hover:shadow-primeColor hover:text-white hover:duration-300">
+                  <a
+                    href={showcase.githubRepo}
+                    onClick={(e) => e.stopPropagation()}
+                    className="rounded-full"
+                  >
+                    <FaGithub size={20} />
+                  </a>
+                </div>
+                <div className="rounded-full hover:bg-primeColor p-2 transition ease-in-out hover:shadow-md hover:shadow-primeColor hover:text-white hover:duration-300">
+                  <a
+                    href={showcase.linkWeb}
+                    onClick={(e) => e.stopPropagation()}
+                    className="rounded-full"
+                  >
+                    <FaLink size={20} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      ))}
+
+      {/* Modal untuk menampilkan deskripsi */}
+      {showModal && selectedShowcase && (
+        <div className="fixed w-full inset-0 flex items-center justify-center z-50  overflow-x-scroll">
+          <div className="fixed inset-0 bg-black opacity-50"></div>
+          <div className="card p-3 hover:shadow-md bg-gray-50 border-collapse border-[2px] w-[650px] h-auto flex justify-center flex-col gap-7 my-8">
+            <div className="flex justify-between -mb-5">
+              <h2 className="font-extrabold text-lg underline">
+                {selectedShowcase.name}
+              </h2>
+              <FaWindowClose
+                className="rounded-full text-red-600 cursor-pointer"
+                size={25}
+                onClick={closeModal}
+              />
+            </div>
+            <div className="flex justify-center items-center -mb-5">
+              <img
+                className="object-cover rounded-2xl h-[320px]"
+                src={selectedShowcase.img}
+              />
+            </div>
+            <div className="card-actions justify-start -mb-5">
+              {selectedShowcase.imgStack.map((img, i) => (
+                <div className="shadow-md rounded-full p-1" key={i}>
+                  <img
+                    key={i}
+                    src={img}
+                    className="w-5 h-5 object-contain"
+                    alt=""
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="-mb-5">
+              <p className="text-justify">{selectedShowcase.description}</p>
+            </div>
+            <div className="flex gap-4">
+              <a
+                href={selectedShowcase.githubRepo}
+                className="btn btn-primary py-2 rounded-2xl"
+              >
+                <FaGithub size={20} />
+                <span className="capitalize">Repositori Projek</span>
+              </a>
+              <a
+                href={selectedShowcase.githubRepo}
+                className="btn btn-secondary py-2 rounded-2xl"
+              >
+                <FaLink size={20} />
+                <span className="capitalize">Website</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 

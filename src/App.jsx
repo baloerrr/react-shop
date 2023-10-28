@@ -21,6 +21,7 @@ import Donate from './pages/Donate/Donate'
 import { useAuth } from './hook/useAuth'
 import { AuthProvider } from './context/AuthContext'
 import { ThemeProvider } from './context/ThemeContext'
+import NotFound from './pages/404/404'
 
 const Layout = () => {
   return (
@@ -44,13 +45,8 @@ function Routes() {
           {/* ==================== Header Navlink Start here =================== */}
           <Route index element={<Home />}></Route>
           <Route path="/showcase" element={<Showcase />}></Route>
-          <Route
-            path="/profile"
-            element={
-              currentUser ? <Profile /> : <Navigate to={<SignIn />} replace />
-            }
-          ></Route>
           <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/notfound" element={<NotFound />}></Route>
           <Route path="/donate" element={<Donate />}></Route>
         </Route>
         <Route path="/signup" element={<SignUp />}></Route>

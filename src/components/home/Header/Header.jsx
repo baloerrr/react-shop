@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { MdClose } from 'react-icons/md'
 import { HiMenuAlt2 } from 'react-icons/hi'
 import { motion } from 'framer-motion'
@@ -8,6 +8,7 @@ import Flex from '../../designLayouts/Flex'
 import { useSelector } from 'react-redux'
 import Logo from '../../Logo/Logo'
 import Toggle from '../../Toggle/Toggle'
+import { nodejs } from '../../../assets/images'
 
 const Header = () => {
   const products = useSelector((state) => state.orebiReducer.products)
@@ -22,6 +23,16 @@ const Header = () => {
   const [showSearchBar, setShowSearchBar] = useState(false)
   const [showUser, setShowUser] = useState(false)
   const [showSearchInput, setShowSearchInput] = useState(false)
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen)
+  }
+
+  const closeDropdown = () => {
+    setIsDropdownOpen(false)
+  }
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value)
@@ -128,7 +139,7 @@ const Header = () => {
                       >
                         {title}
                       </NavLink>
-                      <li className="text-gray-300">
+                      <li className="text-gray-300 dark:text-white">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -148,12 +159,67 @@ const Header = () => {
                   ))}
 
                   <Toggle />
+                  <li className="text-gray-300">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      stroke="currentColor"
+                      class="w-4 h-4 current-fill"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                      />
+                    </svg>
+                  </li>
+                  <div
+                    className="dropdown dropdown-end ml-4"
+                    onClick={toggleDropdown}
+                  >
+                    <label
+                      tabIndex={0}
+                      className="btn btn-ghost btn-circle avatar"
+                    >
+                      <div className="w-10 p-2 bg-gray-200 rounded-full">
+                        <img src={nodejs} className="object-contain w-5" />
+                      </div>
+                    </label>
+                    {isDropdownOpen && (
+                      <ul
+                        tabIndex={0}
+                        className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                      >
+                        <Link
+                          to={'/profile'}
+                          className="p-2 rounded-xl hover:bg-primeColor hover:text-white"
+                        >
+                          <a
+                            className="justify-between"
+                            onClick={closeDropdown}
+                          >
+                            Profile
+                          </a>
+                        </Link>
+
+                        <Link
+                          to={'/signin'}
+                          className="p-2 rounded-xl hover:bg-primeColor hover:text-white"
+                        >
+                          <a onClick={closeDropdown}>Logout</a>
+                        </Link>
+                      </ul>
+                    )}
+                  </div>
                 </>
               </motion.ul>
             )}
             <div className="md:hidden mr-10">
               <Toggle />
             </div>
+
             <HiMenuAlt2
               onClick={() => setSidenav(!sidenav)}
               className="inline-block md:hidden cursor-pointer w-8 h-6 absolute top-6 right-4"
@@ -168,12 +234,18 @@ const Header = () => {
                   transition={{ duration: 0.5 }}
                   className="w-[80%] h-full relative"
                 >
-                  <div className="w-full h-full bg-primeColor p-6">
-                    W
+                  <div className="w-full h-full bg-gray-400 p-6 dark:bg-slate-900">
+                    <Logo />
                     <ul className="text-gray-200 flex flex-col gap-2">
+                      <Link
+                        to={'/profile'}
+                        className="mt-5 hover:font-bold font-bold items-center text-lg text-black dark:text-white hover:underline underline-offset-[4px] decoration-[1px] hover:text-primeColor md:border-r-[2px] border-r-gray-300 hoverEffect last:border-r-0"
+                      >
+                        Faiz Aflah Hafizuddin 😎
+                      </Link>
                       {navBarList.map((item) => (
                         <li
-                          className="font-normal hover:font-bold items-center text-lg text-gray-200 hover:underline underline-offset-[4px] decoration-[1px] hover:text-white md:border-r-[2px] border-r-gray-300 hoverEffect last:border-r-0"
+                          className="mt-5 hover:font-bold font-bold items-center text-lg text-black dark:text-white hover:underline underline-offset-[4px] decoration-[1px] hover:text-primeColor md:border-r-[2px] border-r-gray-300 hoverEffect last:border-r-0"
                           key={item._id}
                         >
                           <NavLink
@@ -185,53 +257,15 @@ const Header = () => {
                           </NavLink>
                         </li>
                       ))}
+                      <Link
+                        to={'/signin'}
+                        className="mt-5 hover:font-bold font-bold items-center text-lg text-black dark:text-white hover:underline underline-offset-[4px] decoration-[1px] hover:text-primeColor md:border-r-[2px] border-r-gray-300 hoverEffect last:border-r-0"
+                      >
+                        Logout
+                      </Link>
                     </ul>
-                    <div className="mt-4">
-                      <h1
-                        onClick={() => setCategory(!category)}
-                        className="flex justify-between text-base cursor-pointer items-center font-titleFont mb-2"
-                      >
-                        Shop by Category{' '}
-                        <span className="text-lg">{category ? '-' : '+'}</span>
-                      </h1>
-                      {category && (
-                        <motion.ul
-                          initial={{ y: 15, opacity: 0 }}
-                          animate={{ y: 0, opacity: 1 }}
-                          transition={{ duration: 0.4 }}
-                          className="text-sm flex flex-col gap-1"
-                        >
-                          <li className="headerSedenavLi">New Arrivals</li>
-                          <li className="headerSedenavLi">Gudgets</li>
-                          <li className="headerSedenavLi">Accessories</li>
-                          <li className="headerSedenavLi">Electronics</li>
-                          <li className="headerSedenavLi">Others</li>
-                        </motion.ul>
-                      )}
-                    </div>
-                    <div className="mt-4">
-                      <h1
-                        onClick={() => setBrand(!brand)}
-                        className="flex justify-between text-base cursor-pointer items-center font-titleFont mb-2"
-                      >
-                        Shop by Brand
-                        <span className="text-lg">{brand ? '-' : '+'}</span>
-                      </h1>
-                      {brand && (
-                        <motion.ul
-                          initial={{ y: 15, opacity: 0 }}
-                          animate={{ y: 0, opacity: 1 }}
-                          transition={{ duration: 0.4 }}
-                          className="text-sm flex flex-col gap-1"
-                        >
-                          <li className="headerSedenavLi">New Arrivals</li>
-                          <li className="headerSedenavLi">Gudgets</li>
-                          <li className="headerSedenavLi">Accessories</li>
-                          <li className="headerSedenavLi">Electronics</li>
-                          <li className="headerSedenavLi">Others</li>
-                        </motion.ul>
-                      )}
-                    </div>
+                    <div className="mt-4"></div>
+                    <div className="mt-4"></div>
                   </div>
                   <span
                     onClick={() => setSidenav(false)}
